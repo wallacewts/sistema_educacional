@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos | Sistema Educacional</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+            color: #222;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin: 25px 0;
+        }
+
+        nav a {
+            color: #174ea6;
+            text-decoration: none;
+            margin-right: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .email {
+            color: #555;
+        }
+
+        .empty {
+            padding: 20px;
+            background: #f3f6fc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alunos cadastrados</h1>
+        <p>Consulte os alunos registrados no sistema.</p>
+    </header>
+
+    <nav>
+        <a href="{% url 'home' %}">← Página inicial</a>
+        <a href="{% url 'listar_cursos' %}">Cursos</a>
+        <a href="{% url 'admin:index' %}">Administração</a>
+    </nav>
+
+    <main>
+        {% if alunos %}
+            {% for aluno in alunos %}
+                <article class="card">
+                    <h2>{{ aluno.nome }} {{ aluno.sobrenome }}</h2>
+                    <p class="email">
+                        <strong>E-mail:</strong> {{ aluno.email }}
+                    </p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p class="empty">Nenhum aluno cadastrado.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
